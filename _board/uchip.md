@@ -47,6 +47,28 @@ You can program uChip using virtually any IDE, in many languages (CircuitPython 
 * Standards narrow-DIP footprint: 0.3” (7.62 mm) row spacing, 0.1” (2.54) pin spacing.
 * Pinout standard logic CMOS compatible: power and GND are on pin 16 and 8, so you can also emulate some 16 pin CMOS ICs (4000 and 74HC series)!  
 
+
+## Setup
+
+If you are a Windows user, download the [BOSSA flash programming utility](https://github.com/shumatech/BOSSA/releases) and install it.
+
+Collect the details abbout your board to check if the communication works.
+
+```sh
+bossac.exe --port=(COMPORT) --info
+```
+
+To flash the `.bin` file, pick an `offset` and run the command mentioned below.
+
+* For M0 boards, which have an 8 kB bootloader, use `--offset=0x2000`
+* For M4 boards, which have a 16 kB bootloader, use `--offset=0x4000`
+
+```sh
+bossac.exe --port=(COMPORT) --offset=0xX000 \
+  --erase --write --verify --debug --reset \
+  adafruit-circuitpython-uchip-xx_XX-X.Y.Z.bin
+```
+
 ## Purchase
 
 * [Itaca Innovation Store](https://shop.itaca-innovation.com)
